@@ -13,7 +13,7 @@ import java.util.Arrays;
  *
  * @author biobii
  */
-public class Neighbor {
+public class Ketetanggaan {
 
     private int top, right, bottom, left;
     private int current, mid;
@@ -37,7 +37,7 @@ public class Neighbor {
             right = 0;
         } else {
             c = new Color(image.getRGB(row, col + 1));
-            right = c.getRed();;
+            right = c.getRed();
         }
 
         // tetangga bawah
@@ -171,7 +171,7 @@ public class Neighbor {
             right = 0;
         } else {
             c = new Color(image.getRGB(row, col + 1));
-            right = c.getBlue();;
+            right = c.getBlue();
         }
 
         // tetangga bawah

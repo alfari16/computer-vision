@@ -15,15 +15,20 @@ import javax.imageio.ImageIO;
  *
  * @author biobii
  */
-public class Batas extends Neighbor implements FilterContract {
+public class Filter extends Ketetanggaan {
 
-    private String context = "batas";
-    private BufferedImage image;
+    private String context;
+    private BufferedImage image, newImg;
     private int width, height;
+    
+    public Filter(String filter, File file){
+        this.context = filter;
+        filter(file);
+    }
 
     public void filter(File file) {
         try {
-            image = ImageIO.read(file);
+            newImg = image = ImageIO.read(file);
             width = image.getWidth();
             height = image.getHeight();
 
@@ -32,8 +37,7 @@ public class Batas extends Neighbor implements FilterContract {
                     int red = this.redProcess(context, image, row, col, width, height);
                     int green = this.greenProcess(context, image, row, col, width, height);
                     int blue = this.blueProcess(context, image, row, col, width, height);
-                    
-                    image.setRGB(row, col, new Color(red, green, blue).getRGB());
+                    newImg.setRGB(row, col, new Color(red, green, blue).getRGB());
                 }
             }
 
@@ -45,8 +49,8 @@ public class Batas extends Neighbor implements FilterContract {
 
     public void output() {
         try {
-            File output = new File("/home/biobii/Pictures/batas.jpg");
-            ImageIO.write(image, "jpg", output);
+            File output = new File("/home/alfari/Documents/kuliah/computer-vision/assets/"+context+".jpg");
+            ImageIO.write(newImg, "jpg", output);
 
             System.out.println("Filter Batas outputed!");
         } catch (Exception e) {
